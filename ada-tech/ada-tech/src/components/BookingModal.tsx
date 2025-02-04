@@ -75,10 +75,12 @@ const BookingModal: React.FC<BookingModalProps> = ({ open, onClose }) => {
           select
           label="Business Type"
           variant="outlined"
+       
           fullWidth
           value={businessType}
           onChange={(e) => setBusinessType(e.target.value)}
-          sx={{ mb: 2 }}
+          sx={{ mb: 2,    textAlign: "left"}}
+         
         >
           {businessOptions.map((option) => (
             <MenuItem key={option} value={option}>
