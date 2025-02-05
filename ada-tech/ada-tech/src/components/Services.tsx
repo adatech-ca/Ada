@@ -12,9 +12,9 @@ import { PaletteColor } from "@mui/material/styles/createPalette";
 
 const services = [
   { icon: <BusinessCenterIcon fontSize="large" />, title: "Business Digitalization", color: "primary" },
-  { icon: <BarChartIcon fontSize="large" />, title: "Data & Analytics", color: "success" },
-  { icon: <StorefrontIcon fontSize="large" />, title: "E-Commerce Solutions", color: "info" },
   { icon: <WebIcon fontSize="large" />, title: "Custom Web Development", color: "secondary" },
+  { icon: <StorefrontIcon fontSize="large" />, title: "E-Commerce Solutions", color: "info" },
+  { icon: <BarChartIcon fontSize="large" />, title: "Data & Analytics", color: "success" },
 ];
 
 export default function Services() {
@@ -35,13 +35,25 @@ export default function Services() {
         overflow: "hidden",
       }}
     >
-      <Typography variant="h4" fontWeight="bold" sx={{ mb: 4, color: theme.palette.text.primary }}>
+      {/* ✨ Services Title */}
+      <Typography variant="h4" fontWeight="bold" sx={{ mt: 10, mb: 5, color: theme.palette.text.primary }}>
         Elevate Your Business with Digital Solutions
       </Typography>
-      <Box sx={{ display: "flex", gap: 4, maxWidth: "1000px", flexWrap: "wrap", justifyContent: "center" }}>
+
+      {/* 📌 Services Grid */}
+      <Box
+        sx={{
+          display: "flex",
+          gap: 4,
+          maxWidth: "1000px",
+          flexWrap: "wrap",
+          justifyContent: "center",
+          mb: 6, // Adjusted spacing for balance
+        }}
+      >
         {services.map((service, index) => {
-          const paletteColor = theme.palette[service.color as keyof typeof theme.palette];
-          const colorMain = (paletteColor as PaletteColor)?.main || theme.palette.primary.main;
+          const paletteColor = theme.palette[service.color as keyof typeof theme.palette] as PaletteColor;
+          const colorMain = paletteColor?.main || theme.palette.primary.main;
 
           return (
             <motion.div
@@ -75,14 +87,25 @@ export default function Services() {
         })}
       </Box>
 
-      <Box sx={{ textAlign: "center", width: "100%", mt: 6 }}>
+      {/* 📍 Footer (Integrated within Services) */}
+      <Box
+        sx={{
+          textAlign: "center",
+          width: "100%",
+          py: 4,
+          bgcolor: theme.palette.primary.main,
+          color: theme.palette.primary.contrastText,
+          mt: "auto",
+        }}
+      >
+        {/* 🌍 Location Info */}
         <Typography variant="h6" fontWeight="bold">
           Based in Toronto, Serving Businesses Worldwide 🌎
         </Typography>
         <Typography
           variant="body2"
           sx={{
-            color: theme.palette.text.secondary,
+            color: theme.palette.primary.contrastText,
             maxWidth: "500px",
             mx: "auto",
             mt: 1,
@@ -91,7 +114,15 @@ export default function Services() {
           Stay updated with business growth strategies & digital transformation trends.
         </Typography>
 
-        <Box sx={{ display: "flex", gap: 3, justifyContent: "center", mt: 3 }}>
+        {/* 🔗 Social Media Links */}
+        <Box
+          sx={{
+            display: "flex",
+            gap: 3,
+            justifyContent: "center",
+            mt: 3,
+          }}
+        >
           {[
             { href: "https://facebook.com", icon: <FaFacebook />, color: "primary" },
             { href: "https://instagram.com", icon: <FaInstagram />, color: "secondary" },
@@ -110,7 +141,7 @@ export default function Services() {
                   transition: "0.3s",
                   "&:hover": {
                     transform: "scale(1.15)",
-                    color: socialColor?.dark ?? socialColor?.main, 
+                    color: socialColor?.dark ?? socialColor?.main,
                   },
                 }}
               >

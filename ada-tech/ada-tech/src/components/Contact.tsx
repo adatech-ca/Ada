@@ -61,6 +61,7 @@ export default function Contact() {
           justifyContent: "center",
           overflow: "hidden",
           position: "relative",
+          ml:8,
         }}
       >
         <motion.div
@@ -111,6 +112,7 @@ export default function Contact() {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
+          mr:8,
           px: { xs: 3, md: 6 },
         }}
       >
