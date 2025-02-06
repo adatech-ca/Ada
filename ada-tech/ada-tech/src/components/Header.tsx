@@ -1,10 +1,10 @@
 "use client";
-import React from "react";
+
+import React, { useState } from "react";
 import {
   AppBar,
   Box,
   CssBaseline,
-  Divider,
   Drawer,
   IconButton,
   List,
@@ -16,34 +16,25 @@ import {
   Button,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
+import { useTheme } from "@mui/material/styles";
 
-const drawerWidth = 240;
-const navItems = ["Home", "Services", "Consultation", "Donate", "Contact"];
+const drawerWidth = 220;
+const navItems = ["Home", "Services", "Consultation", "Contact"];
 
 export default function Header() {
-  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const theme = useTheme();
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   const handleDrawerToggle = () => {
-    setMobileOpen((prevState) => !prevState);
+    setMobileOpen(!mobileOpen);
   };
 
-  const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
-      <Typography variant="h6" sx={{ my: 2, fontWeight: "bold" }}>
-        ADA Tech
-      </Typography>
-      <Divider />
-      <List>
-        {navItems.map((item) => (
-          <ListItem key={item} disablePadding>
-            <ListItemButton sx={{ textAlign: "center" }}>
-              <ListItemText primary={item} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-    </Box>
-  );
+  const handleNavClick = (id: string) => {
+    const section = document.getElementById(id.toLowerCase());
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -51,57 +42,90 @@ export default function Header() {
       <AppBar
         component="nav"
         sx={{
-          backgroundColor: "#1E1E1E", // Dark theme
-          color: "white",
+          position: "fixed",
+          top: 0,
+          width: "100%",
+          zIndex: 1100,
+          backgroundColor: theme.palette.background.paper,
+          color: theme.palette.text.primary,
           backdropFilter: "blur(10px)",
+          boxShadow: "none",
+          height: "60px",
+          display: "flex",
+          justifyContent: "center",
         }}
       >
-        <Toolbar>
-          {/* Mobile Menu Button */}
+        <Toolbar
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            width: "100%",
+            px: 2,
+          }}
+        >
           <IconButton
             color="inherit"
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: "none" } }}
+            sx={{ display: { sm: "none" } }}
           >
             <MenuIcon />
           </IconButton>
-
-          {/* Logo */}
           <Typography
             variant="h6"
             component="div"
-            sx={{ flexGrow: 1, fontWeight: "bold" }}
+            sx={{ fontWeight: "bold", cursor: "pointer" }}
+            onClick={() => handleNavClick("Home")}
           >
             ADA Tech
           </Typography>
-
-          {/* Desktop Navigation */}
-          <Box sx={{ display: { xs: "none", sm: "block" } }}>
+          <Box sx={{ display: { xs: "none", sm: "flex" }, gap: 2 }}>
             {navItems.map((item) => (
-              <Button key={item} sx={{ color: "#fff" }}>
+              <Button
+                key={item}
+                sx={{
+                  color: theme.palette.text.primary,
+                  fontWeight: "500",
+                  fontSize: "0.875rem",
+                  textTransform: "none",
+                  transition: "color 0.2s ease-in-out",
+                  "&:hover": {
+                    color: theme.palette.primary.main,
+                  },
+                }}
+                onClick={() => handleNavClick(item)}
+              >
                 {item}
               </Button>
             ))}
           </Box>
         </Toolbar>
       </AppBar>
-
-      {/* Mobile Drawer */}
-      <nav>
-        <Drawer
-          variant="temporary"
-          open={mobileOpen}
-          onClose={handleDrawerToggle}
-          sx={{
-            display: { xs: "block", sm: "none" },
-            "& .MuiDrawer-paper": { width: drawerWidth },
-          }}
-        >
-          {drawer}
-        </Drawer>
-      </nav>
+      <Drawer
+        variant="temporary"
+        open={mobileOpen}
+        onClose={handleDrawerToggle}
+        sx={{
+          display: { xs: "block", sm: "none" },
+          "& .MuiDrawer-paper": { width: drawerWidth },
+        }}
+      >
+        <Box sx={{ textAlign: "center", mt: 2 }}>
+          <Typography variant="h6" fontWeight="bold">
+            ADA Tech
+          </Typography>
+          <List>
+            {navItems.map((item) => (
+              <ListItem key={item} disablePadding>
+                <ListItemButton onClick={() => handleNavClick(item)}>
+                  <ListItemText primary={item} sx={{ textAlign: "center" }} />
+                </ListItemButton>
+              </ListItem>
+            ))}
+          </List>
+        </Box>
+      </Drawer>
     </Box>
   );
 }
