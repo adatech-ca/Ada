@@ -65,7 +65,7 @@ export default function Contact() {
         }}
       >
         <motion.div
-          initial={{ y: 0 }}
+          initial={{ y: 5 }}
           animate={{ y: "-50%" }} 
           transition={{
             ease: "linear",
@@ -75,7 +75,7 @@ export default function Contact() {
           style={{
             display: "flex",
             flexDirection: "column",
-            gap: "10px",
+            gap: "5px",
           }}
         >
           {[...videos, ...videos].map((video, index) => (
