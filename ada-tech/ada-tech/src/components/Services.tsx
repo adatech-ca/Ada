@@ -1,7 +1,7 @@
 "use client";
 
 import { useTheme } from "@mui/material/styles";
-import { Box, Typography, Paper, IconButton } from "@mui/material";
+import { Box, Typography, Paper, IconButton, Button } from "@mui/material";
 import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { motion } from "framer-motion";
 import BusinessCenterIcon from "@mui/icons-material/BusinessCenter";
@@ -9,16 +9,58 @@ import BarChartIcon from "@mui/icons-material/BarChart";
 import StorefrontIcon from "@mui/icons-material/Storefront";
 import WebIcon from "@mui/icons-material/Web";
 import { PaletteColor } from "@mui/material/styles/createPalette";
+import { useState } from "react";
 
 const services = [
-  { icon: <BusinessCenterIcon fontSize="large" />, title: "Business Digitalization", color: "primary" },
-  { icon: <WebIcon fontSize="large" />, title: "Custom Web Development", color: "secondary" },
-  { icon: <StorefrontIcon fontSize="large" />, title: "E-Commerce Solutions", color: "info" },
-  { icon: <BarChartIcon fontSize="large" />, title: "Data & Analytics", color: "success" },
+  {
+    icon: <BusinessCenterIcon fontSize="large" />,
+    title: "Business Digitalization",
+    color: "primary",
+  },
+  {
+    icon: <WebIcon fontSize="large" />,
+    title: "Custom Web Development",
+    color: "secondary",
+  },
+  {
+    icon: <StorefrontIcon fontSize="large" />,
+    title: "E-Commerce Solutions",
+    color: "info",
+  },
+  {
+    icon: <BarChartIcon fontSize="large" />,
+    title: "Data & Analytics",
+    color: "success",
+  },
+];
+
+const videos = [
+  "/1.mp4",
+  "/2.mp4",
+  "/3.mp4",
+  "/4.mp4",
+  "/5.mp4",
+  "/6.mp4",
+  "/7.mp4",
+  "/1.mp4",
+  "/2.mp4",
+  "/3.mp4",
+  "/4.mp4",
+  "/5.mp4",
+  "/6.mp4",
+  "/7.mp4",
+  "/1.mp4",
+  "/2.mp4",
+  "/3.mp4",
+  "/4.mp4",
+  "/5.mp4",
+  "/6.mp4",
+  "/7.mp4",
 ];
 
 export default function Services() {
   const theme = useTheme();
+  const [openModal, setOpenModal] = useState(false);
 
   return (
     <Box
@@ -36,11 +78,14 @@ export default function Services() {
       }}
     >
       {/* ✨ Services Title */}
-      <Typography variant="h4" fontWeight="bold" sx={{ mt: 10, mb: 5, color: theme.palette.text.primary }}>
+      <Typography
+        variant="h4"
+        fontWeight="bold"
+        sx={{ mt: 10, mb: 5, color: theme.palette.text.primary }}
+      >
         Elevate Your Business with Digital Solutions
       </Typography>
 
-      {/* 📌 Services Grid */}
       <Box
         sx={{
           display: "flex",
@@ -48,11 +93,13 @@ export default function Services() {
           maxWidth: "1000px",
           flexWrap: "wrap",
           justifyContent: "center",
-          mb: 6, // Adjusted spacing for balance
+          mb: 6,
         }}
       >
         {services.map((service, index) => {
-          const paletteColor = theme.palette[service.color as keyof typeof theme.palette] as PaletteColor;
+          const paletteColor = theme.palette[
+            service.color as keyof typeof theme.palette
+          ] as PaletteColor;
           const colorMain = paletteColor?.main || theme.palette.primary.main;
 
           return (
@@ -79,15 +126,33 @@ export default function Services() {
                   "&:hover": { boxShadow: "0px 10px 25px rgba(0, 0, 0, 0.1)" },
                 }}
               >
-                <Typography sx={{ color: colorMain, fontSize: "2.5rem" }}>{service.icon}</Typography>
-                <Typography variant="h6" fontWeight="bold">{service.title}</Typography>
+                <Typography sx={{ color: colorMain, fontSize: "2.5rem" }}>
+                  {service.icon}
+                </Typography>
+                <Typography variant="h6" fontWeight="bold">
+                  {service.title}
+                </Typography>
               </Paper>
             </motion.div>
           );
         })}
       </Box>
-
-      {/* 📍 Footer (Integrated within Services) */}
+      <Box
+        id="contact"
+        sx={{
+          height: "100vh",
+          display: "flex",
+          flexDirection: { xs: "column", md: "row" },
+          alignItems: "center",
+          justifyContent: "center",
+          backgroundColor: theme.palette.background.default,
+          color: theme.palette.text.primary,
+          textAlign: "center",
+          px: 1,
+          scrollSnapAlign: "start",
+          overflow: "hidden",
+        }}
+      ></Box>
       <Box
         sx={{
           textAlign: "center",
@@ -97,8 +162,7 @@ export default function Services() {
           color: theme.palette.primary.contrastText,
           mt: "auto",
         }}
-      >
-        {/* 🌍 Location Info */}
+       >
         <Typography variant="h6" fontWeight="bold">
           Based in Toronto, Serving Businesses Worldwide 🌎
         </Typography>
@@ -111,10 +175,10 @@ export default function Services() {
             mt: 1,
           }}
         >
-          Stay updated with business growth strategies & digital transformation trends.
+          Stay updated with business growth strategies & digital transformation
+          trends.
         </Typography>
 
-        {/* 🔗 Social Media Links */}
         <Box
           sx={{
             display: "flex",
@@ -124,12 +188,26 @@ export default function Services() {
           }}
         >
           {[
-            { href: "https://facebook.com", icon: <FaFacebook />, color: "primary" },
-            { href: "https://instagram.com", icon: <FaInstagram />, color: "secondary" },
+            {
+              href: "https://facebook.com",
+              icon: <FaFacebook />,
+              color: "primary",
+            },
+            {
+              href: "https://instagram.com",
+              icon: <FaInstagram />,
+              color: "secondary",
+            },
             { href: "https://twitter.com", icon: <FaTwitter />, color: "info" },
-            { href: "https://linkedin.com", icon: <FaLinkedin />, color: "success" },
+            {
+              href: "https://linkedin.com",
+              icon: <FaLinkedin />,
+              color: "success",
+            },
           ].map((social, index) => {
-            const socialColor = theme.palette[social.color as keyof typeof theme.palette] as PaletteColor;
+            const socialColor = theme.palette[
+              social.color as keyof typeof theme.palette
+            ] as PaletteColor;
             return (
               <IconButton
                 key={index}

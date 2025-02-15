@@ -61,12 +61,12 @@ export default function Contact() {
           justifyContent: "center",
           overflow: "hidden",
           position: "relative",
-          ml:8,
+          ml: 8,
         }}
       >
         <motion.div
           initial={{ y: 5 }}
-          animate={{ y: "-50%" }} 
+          animate={{ y: "-50%" }}
           transition={{
             ease: "linear",
             duration: 50,
@@ -112,7 +112,7 @@ export default function Contact() {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          mr:8,
+          mr: 8,
           px: { xs: 3, md: 6 },
         }}
       >
@@ -136,31 +136,9 @@ export default function Contact() {
             fontWeight: 500,
           }}
         >
-          We help businesses transform digitally.
-           No matter the size or budget,
+          We help businesses transform digitally. No matter the size or budget,
           we have solutions tailored for you.
         </Typography>
-
-        <Button
-          variant="contained"
-          color="primary"
-          size="large"
-          onClick={() => setOpenModal(true)}
-          sx={{
-            fontWeight: "bold",
-            px: 4,
-            py: 1.5,
-            borderRadius: "8px",
-            textTransform: "none",
-            transition: "0.3s",
-            "&:hover": {
-              backgroundColor: theme.palette.primary.dark,
-              transform: "scale(1.05)",
-            },
-          }}
-        >
-          Book your Free Consultation
-        </Button>
       </Box>
       <BookingModal open={openModal} onClose={() => setOpenModal(false)} />
     </Box>

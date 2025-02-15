@@ -1,7 +1,7 @@
 "use client";
 import Services from "@/components/Services";
 import Hero from "@/components/Hero";
-import Contact from "@/components/Contact";
+import AboutUs  from "@/components/AboutUs";
 
 
 export default function Home() {
@@ -14,7 +14,7 @@ export default function Home() {
       }}
     >
       <Hero />
-      <Contact />
+      <AboutUs/>
       <Services />
     </main>
   );
