@@ -22,23 +22,12 @@ interface BookingModalProps {
 const BookingModal: React.FC<BookingModalProps> = ({ open, onClose }) => {
   const [selectedDate, setSelectedDate] = useState<Dayjs | null>(dayjs());
   const [fullName, setFullName] = useState("");
-  const [businessType, setBusinessType] = useState("");
-  const [socialMedia, setSocialMedia] = useState("");
-
-  const businessOptions = [
-    "Retail",
-    "E-Commerce",
-    "Consulting",
-    "Tech Startup",
-    "Health & Wellness",
-    "Other",
-  ];
+  const [PhoneNumber, setPhoneNumber] = useState("");
 
   const handleSubmit = () => {
     console.log({
       fullName,
-      businessType,
-      socialMedia,
+      PhoneNumber,
       selectedDate: selectedDate?.format("YYYY-MM-DD HH:mm"),
     });
     onClose();
@@ -72,30 +61,14 @@ const BookingModal: React.FC<BookingModalProps> = ({ open, onClose }) => {
           sx={{ mb: 2 }}
         />
         <TextField
-          select
-          label="Business Type"
+          label="Phone Number"
           variant="outlined"
-       
           fullWidth
-          value={businessType}
-          onChange={(e) => setBusinessType(e.target.value)}
+          value={PhoneNumber}
+          onChange={(e) => setPhoneNumber(e.target.value.replace(/\D/g, ''))}
           sx={{ mb: 2,    textAlign: "left"}}
-         
-        >
-          {businessOptions.map((option) => (
-            <MenuItem key={option} value={option}>
-              {option}
-            </MenuItem>
-          ))}
-        </TextField>
-        <TextField
-          label="Social Media Link (Optional)"
-          variant="outlined"
-          fullWidth
-          value={socialMedia}
-          onChange={(e) => setSocialMedia(e.target.value)}
-          sx={{ mb: 2 }}
         />
+  
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <DateTimePicker
             label="Choose Date & Time"
