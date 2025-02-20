@@ -37,9 +37,9 @@ export default function AboutUs() {
     <Box
       id="AboutUs"
       sx={{
-        height: "100vh",
+        height: "30vh",
         display: "flex",
-        flexDirection: { xs: "column", md: "row" },
+        flexDirection: { xs: "row", md: "row" },
         alignItems: "center",
         justifyContent: "center",
         backgroundColor: theme.palette.background.default,
@@ -51,8 +51,8 @@ export default function AboutUs() {
       }}
     >
       <motion.div
-        initial={{ y: 5 }}
-        animate={{ y: "-50%" }}
+        initial={{ x: 5 }}
+        animate={{ x: "50%" }}
         transition={{
           ease: "linear",
           duration: 50,
@@ -60,7 +60,7 @@ export default function AboutUs() {
         }}
         style={{
           display: "flex",
-          flexDirection: "column",
+          flexDirection: "row",
           gap: "5px",
         }}
       >
@@ -68,10 +68,11 @@ export default function AboutUs() {
           <Box
             key={index}
             sx={{
-              width: "85%",
+              width:"100px",
               height: "160px",
               borderRadius: "12px",
               overflow: "hidden",
+              opacity: "80%"
             }}
           >
             <video

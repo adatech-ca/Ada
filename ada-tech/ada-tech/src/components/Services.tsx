@@ -10,6 +10,7 @@ import StorefrontIcon from "@mui/icons-material/Storefront";
 import WebIcon from "@mui/icons-material/Web";
 import { PaletteColor } from "@mui/material/styles/createPalette";
 import { useState } from "react";
+import AboutUs from "./AboutUs";
 
 const services = [
   {
@@ -63,10 +64,11 @@ export default function Services() {
   const [openModal, setOpenModal] = useState(false);
 
   return (
+    <>
     <Box
       id="services"
       sx={{
-        minHeight: "100vh",
+        minHeight: "30vh",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -77,7 +79,6 @@ export default function Services() {
         overflow: "hidden",
       }}
     >
-      {/* ✨ Services Title */}
       <Typography
         variant="h4"
         fontWeight="bold"
@@ -140,7 +141,7 @@ export default function Services() {
       <Box
         id="contact"
         sx={{
-          height: "100vh",
+          height: "10vh",
           display: "flex",
           flexDirection: { xs: "column", md: "row" },
           alignItems: "center",
@@ -149,10 +150,10 @@ export default function Services() {
           color: theme.palette.text.primary,
           textAlign: "center",
           px: 1,
-          scrollSnapAlign: "start",
           overflow: "hidden",
         }}
       ></Box>
+            <AboutUs/>
       <Box
         sx={{
           textAlign: "center",
@@ -230,5 +231,6 @@ export default function Services() {
         </Box>
       </Box>
     </Box>
+    </>
   );
 }

@@ -19,7 +19,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { useTheme } from "@mui/material/styles";
 
 const drawerWidth = 220;
-const navItems = ["Home", "About Us", "Services"];
+const navItems = ["Home", "Services", "About Us"];
 
 export default function Header() {
   const theme = useTheme();
