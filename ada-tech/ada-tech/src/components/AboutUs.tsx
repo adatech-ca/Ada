@@ -1,130 +1,140 @@
 "use client";
 import { Box, Typography, Button } from "@mui/material";
-import theme from "@/styles/theme";
 import { motion } from "framer-motion";
 import BookingModal from "./BookingModal";
 import { useState } from "react";
 
-
-const videos = [
-  "/1.mp4",
-  "/2.mp4",
-  "/3.mp4",
-  "/4.mp4",
-  "/5.mp4",
-  "/6.mp4",
-  "/7.mp4",
-  "/1.mp4",
-  "/2.mp4",
-  "/3.mp4",
-  "/4.mp4",
-  "/5.mp4",
-  "/6.mp4",
-  "/7.mp4",
-  "/1.mp4",
-  "/2.mp4",
-  "/3.mp4",
-  "/4.mp4",
-  "/5.mp4",
-  "/6.mp4",
-  "/7.mp4",
-];
+const videos = ["/1.mp4", "/2.mp4", "/3.mp4", "/4.mp4", "/5.mp4", "/7.mp4"];
 
 export default function AboutUs() {
-    
-    const [openModal, setOpenModal] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
+
   return (
     <Box
-      id="AboutUs"
+      id="about-us"
       sx={{
-        height: "30vh",
         display: "flex",
-        flexDirection: { xs: "row", md: "row" },
+        flexDirection: { xs: "column", md: "row" },
         alignItems: "center",
-        justifyContent: "center",
-        backgroundColor: theme.palette.background.default,
-        color: theme.palette.text.primary,
-        textAlign: "center",
-        px: 1,
-        scrollSnapAlign: "start",
+        justifyContent: "space-between",
+        background: "linear-gradient(to right, #0f172a, #1e293b)",
+        color: "white",
+        px: 4,
+        py: 10,
+        minHeight: "100vh",
         overflow: "hidden",
+        gap: 4,
       }}
     >
+      {/* 🎥 Video Grid Animation */}
       <motion.div
-        initial={{ x: 5 }}
-        animate={{ x: "50%" }}
-        transition={{
-          ease: "linear",
-          duration: 50,
-          repeat: Infinity,
-        }}
+        initial={{ x: -50, opacity: 0 }}
+        whileInView={{ x: 0, opacity: 1 }}
+        transition={{ duration: 1 }}
         style={{
-          display: "flex",
-          flexDirection: "row",
-          gap: "5px",
+          display: "grid",
+          gridTemplateColumns: "repeat(3, 1fr)",
+          gap: "10px",
+          width: "50%",
         }}
       >
-        {[...videos, ...videos].map((video, index) => (
-          <Box
+        {videos.map((video, index) => (
+          <motion.div
             key={index}
-            sx={{
-              width:"100px",
-              height: "160px",
-              borderRadius: "12px",
-              overflow: "hidden",
-              opacity: "80%"
-            }}
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: index * 0.1 }}
           >
-            <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
+            <Box
+              sx={{
+                width: "130px",
+                height: "200px",
+                borderRadius: "12px",
+                overflow: "hidden",
+                boxShadow: "0 5px 20px rgba(0, 255, 255, 0.2)", // Neon glow
+                transition: "0.3s",
+                "&:hover": {
+                  transform: "scale(1.05)",
+                  boxShadow: "0 10px 30px rgba(0, 255, 255, 0.5)", // Glowing effect
+                },
               }}
             >
-              <source src={video} type="video/mp4" />
-            </video>
-          </Box>
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                }}
+              >
+                <source src={video} type="video/mp4" />
+              </video>
+            </Box>
+          </motion.div>
         ))}
       </motion.div>
-      <Box sx={{ width: "50%" }}>
-      <Box>
-        <Typography variant="h4" fontWeight="bold">
-          Our Expertise
-        </Typography>
-        <Typography variant="h6" sx={{mt:3, mb:3}}>
-          We have over 10 years of experience in providing business and
-          management consulting services to companies of all sizes. Our team of
-          experts has a deep understanding of the industry and can help you
-          achieve your business goals.
-        </Typography>
-      </Box>
-      <Button
-          variant="contained"
-          color="primary"
-          size="large"
-          onClick={() => setOpenModal(true)}
+
+      {/* 📢 Text & CTA Section with Glassmorphism */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+      >
+        <Box
           sx={{
-            fontWeight: "bold",
-            px: 4,
-            py: 1.5,
-            borderRadius: "8px",
-            textTransform: "none",
-            transition: "0.3s",
-            "&:hover": {
-              backgroundColor: theme.palette.primary.dark,
-              transform: "scale(1.05)",
-            },
+            maxWidth: "45%",
+            textAlign: "left",
+            background: "rgba(255, 255, 255, 0.1)", // Glassmorphism effect
+            backdropFilter: "blur(10px)",
+            padding: "30px",
+            borderRadius: "16px",
+            border: "1px solid rgba(255, 255, 255, 0.2)",
+            boxShadow: "0 8px 32px rgba(0, 0, 0, 0.2)",
           }}
         >
-          Book your Free Consultation
-        </Button>
+          <Typography
+            variant="h4"
+            fontWeight="bold"
+            sx={{
+              background: "linear-gradient(90deg, #22c55e, #3b82f6)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              fontSize: "2.2rem",
+            }}
+          >
+            Our Expertise
+          </Typography>
+          <Typography variant="h6" sx={{ mt: 3, mb: 3, opacity: 0.85 }}>
+            With over 10 years of experience, we help businesses achieve digital success.
+          </Typography>
+          <Button
+            variant="contained"
+            color="primary"
+            size="large"
+            onClick={() => setOpenModal(true)}
+            sx={{
+              fontWeight: "bold",
+              px: 5,
+              py: 1.8,
+              fontSize: "1.1rem",
+              borderRadius: "50px",
+              transition: "0.3s",
+              boxShadow: "0 0 20px rgba(0, 128, 255, 0.6)", // Neon glow
+              "&:hover": {
+                transform: "scale(1.05)",
+                boxShadow: "0 0 25px rgba(0, 128, 255, 0.9)",
+              },
+            }}
+          >
+            Book Your Free Consultation 🚀
+          </Button>
+        </Box>
+      </motion.div>
+
       <BookingModal open={openModal} onClose={() => setOpenModal(false)} />
-       </Box>
     </Box>
   );
 }

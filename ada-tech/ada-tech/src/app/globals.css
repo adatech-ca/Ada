@@ -10,3 +10,6 @@ body {
   font-family: "Arial", sans-serif;
   line-height: 1.6;
 }
+html {
+  scroll-behavior: smooth;
+}

@@ -37,8 +37,35 @@ export default function Header() {
   };
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box sx={{ display: "flex", flexDirection: "column" }}>
       <CssBaseline />
+
+      {/* 🎥 Video Background Inside Header Only */}
+      <Box
+        sx={{
+          position: "absolute", // Keeps it inside the header
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%", 
+          overflow: "hidden", // Ensures video doesn't spread
+          zIndex: -1, // Keeps video behind navbar content
+        }}
+      >
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+          }}
+        >
+          <source src="/ada.mp4" type="video/mp4" />
+        </video>
+      </Box>
       <AppBar
         component="nav"
         sx={{
@@ -46,13 +73,11 @@ export default function Header() {
           top: 0,
           width: "100%",
           zIndex: 1100,
-          backgroundColor: theme.palette.background.paper,
-          color: theme.palette.text.primary,
-          backdropFilter: "blur(10px)",
-          boxShadow: "none",
-          height: "60px",
+          background: "rgba(0, 0, 0, 0)", 
+          boxShadow: "0px 0px 0px rgba(0, 0, 0, 0)",
+          height: "250px",
           display: "flex",
-          justifyContent: "center",
+          alignItems: "center",
         }}
       >
         <Toolbar
@@ -72,27 +97,33 @@ export default function Header() {
           >
             <MenuIcon />
           </IconButton>
+
           <Typography
             variant="h6"
             component="div"
-            sx={{ fontWeight: "bold", cursor: "pointer" }}
+            sx={{
+              fontWeight: "bold",
+              cursor: "pointer",
+              transition: "0.3s",
+              "&:hover": { color: theme.palette.primary.main },
+            }}
             onClick={() => handleNavClick("Home")}
           >
             ADA Tech
           </Typography>
-          <Box sx={{ display: { xs: "none", sm: "flex" }, gap: 2 }}>
+
+          {/* 🖥 Desktop Navigation */}
+          <Box sx={{ display: { xs: "none", sm: "flex" }, gap: 3 }}>
             {navItems.map((item) => (
               <Button
                 key={item}
                 sx={{
-                  color: theme.palette.text.primary,
+                  color: "rgba(255,255,255,0.8)",
                   fontWeight: "500",
                   fontSize: "0.875rem",
                   textTransform: "none",
                   transition: "color 0.2s ease-in-out",
-                  "&:hover": {
-                    color: theme.palette.primary.main,
-                  },
+                  "&:hover": { color: theme.palette.primary.main },
                 }}
                 onClick={() => handleNavClick(item)}
               >
@@ -102,24 +133,50 @@ export default function Header() {
           </Box>
         </Toolbar>
       </AppBar>
+
+      {/* 📱 Mobile Drawer Navigation */}
       <Drawer
         variant="temporary"
         open={mobileOpen}
         onClose={handleDrawerToggle}
         sx={{
           display: { xs: "block", sm: "none" },
-          "& .MuiDrawer-paper": { width: drawerWidth },
+          "& .MuiDrawer-paper": {
+            width: drawerWidth,
+            background: "rgba(17, 25, 40, 0.9)",
+            backdropFilter: "blur(15px)",
+            color: "white",
+          },
         }}
       >
-        <Box sx={{ textAlign: "center", mt: 2 }}>
-          <Typography variant="h6" fontWeight="bold">
+        <Box sx={{ textAlign: "center", mt: 3 }}>
+          <Typography
+            variant="h6"
+            fontWeight="bold"
+            sx={{ mb: 2, cursor: "pointer" }}
+            onClick={() => {
+              handleNavClick("Home");
+              setMobileOpen(false);
+            }}
+          >
             ADA Tech
           </Typography>
           <List>
             {navItems.map((item) => (
               <ListItem key={item} disablePadding>
-                <ListItemButton onClick={() => handleNavClick(item)}>
-                  <ListItemText primary={item} sx={{ textAlign: "center" }} />
+                <ListItemButton
+                  onClick={() => {
+                    handleNavClick(item);
+                    setMobileOpen(false);
+                  }}
+                  sx={{
+                    textAlign: "center",
+                    color: "rgba(255,255,255,0.8)",
+                    transition: "color 0.2s",
+                    "&:hover": { color: theme.palette.primary.main },
+                  }}
+                >
+                  <ListItemText primary={item} />
                 </ListItemButton>
               </ListItem>
             ))}
