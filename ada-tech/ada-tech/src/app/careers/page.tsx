@@ -43,7 +43,7 @@ export default function Careers() {
     >
       {/* 🚀 Header Section */}
       <Typography variant="h3" fontWeight="bold" sx={{ mb: 2 }}>
-        Join Our Team
+        Join Team
       </Typography>
       <Typography variant="h5" sx={{ color: theme.palette.text.secondary, maxWidth: "700px", mb: 5 }}>
         We’re looking for passionate professionals to drive digital transformation.

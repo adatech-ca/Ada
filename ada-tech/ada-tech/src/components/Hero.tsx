@@ -1,9 +1,15 @@
+"use client";
+
 import { Box, Typography, Button } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { motion } from "framer-motion";
+import BookingModal from "./BookingModal";
+import { useState } from "react";
+import BusinessVideos from "./BusinessVideos";
 
 export default function Hero() {
   const theme = useTheme();
+  const [openModal, setOpenModal] = useState(false);
 
   const handleNavClick = (id: string) => {
     const section = document.getElementById(id.toLowerCase());
@@ -13,128 +19,120 @@ export default function Hero() {
   };
 
   return (
-    <Box
-      id="home"
-      sx={{
-        height: "100vh",
-        position: "relative",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        flexDirection: "column",
-        color: theme.palette.text.primary,
-        textAlign: "center",
-        px: 1,
-        overflow: "hidden",
-      }}
-    >
-{/* 
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        style={{
-          position: "absolute",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          width: "100%",
-          height: "100%",
-          objectFit: "cover",
-          zIndex: -2,
-        }}
-      >
-        <source src="/ada.mp4" type="video/mp4" />
-      </video> */}
-
-      {/* Overlay for Better Readability */}
+    <Box id="home">
+      <BusinessVideos />
       <Box
         sx={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          width: "100%",
-          height: "100%",
-          background: "linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.2))", // Darker at bottom for contrast
-          backdropFilter: "blur(5px)", // Glass effect
-          zIndex: -1,
+          minHeight: "40vh",
+          mt: 12,
+          pt: { xs: 4, sm: 6, md: 8 },
+          paddingBottom: { xs: 6, sm: 8 },
+          position: "relative",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "flex-start",
+          flexDirection: "column",
+          backgroundColor: "#fefefe",
+          color: "#111",
+          textAlign: "center",
+          px: 1,
+          overflow: "hidden",
         }}
-      />
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
       >
-        <Box
-          sx={{
-            backgroundColor: "rgba(255, 255, 255, 0.1)", // Light transparency
-            backdropFilter: "blur(10px)", // Glass effect
-            padding: "20px 40px",
-            borderRadius: "16px",
-            boxShadow: "0 8px 32px rgba(0, 0, 0, 0.2)", // Soft shadow
-            display: "inline-block",
-          }}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <Typography
-            variant="h3"
-            fontWeight="bold"
+          <Box
             sx={{
-              color: "#fff",
-              textShadow: "0px 4px 20px rgba(0, 0, 0, 0.8)",
+              maxWidth: "700px",
+              width: "100%",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              mb: 1,
             }}
           >
-            Welcome to{" "}
-            <span style={{ color: theme.palette.primary.main }}>ADA Tech</span>
-          </Typography>
-
-          <Typography
-            variant="h6"
-            sx={{
-              color: "rgba(255, 255, 255, 0.9)",
-              maxWidth: "600px",
-              fontWeight: 400,
-              mt: 1,
-              textShadow: "0px 2px 12px rgba(0, 0, 0, 0.6)",
-            }}
-          >
-            Future-Driven Digital Solutions 
-          </Typography>
-        </Box>
-      </motion.div>
-
-      {/* Call to Action Button */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.3, duration: 0.6 }}
-      >
-        <Box sx={{ mt: 4 }}>
-          <Button
-            variant="contained"
-            color="primary"
-            size="large"
-            sx={{
-              fontWeight: "bold",
-              px: 5,
-              py: 1.8,
-              borderRadius: "50px",
-              textTransform: "none",
-              fontSize: "1.1rem",
-              transition: "0.3s",
-              boxShadow: "0 4px 15px rgba(0, 128, 255, 0.5)",
-              "&:hover": {
-                backgroundColor: theme.palette.primary.dark,
-                transform: "scale(1.05)",
-                boxShadow: "0 6px 20px rgba(0, 128, 255, 0.7)",
-              },
-            }}
-            onClick={() => handleNavClick("contact")}
-          >
-            Get Started 
-          </Button>
-        </Box>
-      </motion.div>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                maxWidth: "100%",
+                margin: "auto",
+                textAlign: "center",
+                alignItems: "center",
+                background: "#f9f9f9",
+                padding: "10px",
+                borderRadius: "16px",
+                boxShadow: "0 8px 32px rgba(0, 0, 0, 0.2)",
+              }}
+            >
+              <motion.div
+                initial={{ x: -200, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ duration: 1 }}
+              >
+                <Typography
+                  variant="h6"
+                  sx={{
+                    mt: { xs: 2, sm: 3 },
+                    mb: { xs: 2, sm: 3 },
+                    fontSize: { xs: "1rem", sm: "1.2rem", md: "1.4rem" },
+                    fontWeight: 400,
+                    opacity: 0.85,
+                    textAlign: "center",
+                    maxWidth: "800px",
+                    mx: "auto",
+                  }}
+                >
+                  We craft innovative digital solutions to move your business
+                  forward
+                </Typography>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3, duration: 0.6 }}
+              >
+                <Box sx={{ mt: 4, display: "flex", gap: 2 }}>
+                  <Button
+                    variant="outlined"
+                    size="large"
+                    onClick={() => setOpenModal(true)}
+                    sx={{
+                      border: "1px solid #111",
+                      color: "#111",
+                      borderRadius: "50px",
+                      px: 4,
+                      py: 1.5,
+                      fontWeight: 500,
+                      textTransform: "none",
+                      fontSize: "1rem",
+                      transition: "all 0.3s ease-in-out",
+                      "&:hover": {
+                        backgroundColor: "#111",
+                        color: "#fff",
+                      },
+                    }}
+                  >
+                    Book Consultation
+                  </Button>
+                  <BookingModal
+                    open={openModal}
+                    onClose={() => setOpenModal(false)}
+                  />
+                </Box>
+              </motion.div>
+            </Box>
+          </Box>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        ></motion.div>
+      </Box>
     </Box>
   );
 }

@@ -1,7 +1,8 @@
 "use client";
 import Services from "@/components/Services";
 import Hero from "@/components/Hero";
-import AboutUs  from "@/components/AboutUs";
+import Header from "@/components/Header";
+import Team from "@/components/Team";
 
 
 export default function Home() {
@@ -10,11 +11,12 @@ export default function Home() {
       style={{
         scrollSnapType: "y mandatory",
         overflowY: "scroll",
-        height: "100vh",
       }}
     >
+    <Header />
       <Hero />
       <Services />
+      <Team />
     </main>
   );
 }

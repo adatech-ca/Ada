@@ -19,7 +19,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { useTheme } from "@mui/material/styles";
 
 const drawerWidth = 220;
-const navItems = ["Home", "Services", "About Us"];
+const navItems = ["home", "contact", "team"];
 
 export default function Header() {
   const theme = useTheme();
@@ -39,17 +39,15 @@ export default function Header() {
   return (
     <Box sx={{ display: "flex", flexDirection: "column" }}>
       <CssBaseline />
-
-      {/* 🎥 Video Background Inside Header Only */}
       <Box
         sx={{
-          position: "absolute", // Keeps it inside the header
+          position: "absolute",
           top: 0,
           left: 0,
           width: "100%",
-          height: "100%", 
-          overflow: "hidden", // Ensures video doesn't spread
-          zIndex: -1, // Keeps video behind navbar content
+          height: "100%",
+          overflow: "hidden",
+          zIndex: -1,
         }}
       >
         <video
@@ -61,69 +59,72 @@ export default function Header() {
             width: "100%",
             height: "100%",
             objectFit: "cover",
+            filter: "brightness(0.4)",
           }}
         >
           <source src="/ada.mp4" type="video/mp4" />
         </video>
       </Box>
+
       <AppBar
         component="nav"
         sx={{
           position: "fixed",
-          top: 0,
+          top: 1,
           width: "100%",
           zIndex: 1100,
-          background: "rgba(0, 0, 0, 0)", 
-          boxShadow: "0px 0px 0px rgba(0, 0, 0, 0)",
-          height: "250px",
-          display: "flex",
-          alignItems: "center",
+          background: "rgba(255, 255, 255, 0.6)",
+          borderBottom: "1px solid rgba(0, 0, 0, 0.05)",
+          boxShadow: "none",
+          height: "100px",
         }}
       >
         <Toolbar
           sx={{
             display: "flex",
             justifyContent: "space-between",
+            alignItems: "center",
             width: "100%",
-            px: 2,
           }}
         >
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            sx={{ display: { sm: "none" } }}
-          >
-            <MenuIcon />
-          </IconButton>
-
           <Typography
-            variant="h6"
+            variant="h5"
             component="div"
             sx={{
-              fontWeight: "bold",
+              fontWeight: 600,
+              letterSpacing: "0.5px",
+              color: "#111",
               cursor: "pointer",
-              transition: "0.3s",
-              "&:hover": { color: theme.palette.primary.main },
+              transition: "color 0.3s",
+              "&:hover": { color: "#000" },
             }}
             onClick={() => handleNavClick("Home")}
           >
             ADA Tech
           </Typography>
 
-          {/* 🖥 Desktop Navigation */}
-          <Box sx={{ display: { xs: "none", sm: "flex" }, gap: 3 }}>
+          <Box
+            sx={{
+              display: { xs: "none", sm: "flex" },
+              gap: 1,
+            }}
+          >
             {navItems.map((item) => (
               <Button
                 key={item}
                 sx={{
-                  color: "rgba(255,255,255,0.8)",
-                  fontWeight: "500",
-                  fontSize: "0.875rem",
+                  color: "#111",
+                  borderRadius: "50px",
+                  px: 3,
+                  py: 0.8,
+                  fontWeight: 500,
                   textTransform: "none",
-                  transition: "color 0.2s ease-in-out",
-                  "&:hover": { color: theme.palette.primary.main },
+                  fontSize: "0.95rem",
+                  transition: "all 0.2s ease-in-out",
+                  "&:hover": {
+                    backgroundColor: "#000",
+                    color: "#fff",
+                  },
                 }}
                 onClick={() => handleNavClick(item)}
               >
@@ -131,10 +132,19 @@ export default function Header() {
               </Button>
             ))}
           </Box>
+
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            edge="end"
+            onClick={handleDrawerToggle}
+            sx={{ display: { sm: "none" } }}
+          >
+            <MenuIcon />
+          </IconButton>
         </Toolbar>
       </AppBar>
 
-      {/* 📱 Mobile Drawer Navigation */}
       <Drawer
         variant="temporary"
         open={mobileOpen}
@@ -143,9 +153,9 @@ export default function Header() {
           display: { xs: "block", sm: "none" },
           "& .MuiDrawer-paper": {
             width: drawerWidth,
-            background: "rgba(17, 25, 40, 0.9)",
-            backdropFilter: "blur(15px)",
-            color: "white",
+            background: "rgba(255, 255, 255, 0.95)",
+            backdropFilter: "blur(10px)",
+            color: "#111",
           },
         }}
       >
@@ -171,9 +181,9 @@ export default function Header() {
                   }}
                   sx={{
                     textAlign: "center",
-                    color: "rgba(255,255,255,0.8)",
+                    color: "rgba(17,17,17,0.8)",
                     transition: "color 0.2s",
-                    "&:hover": { color: theme.palette.primary.main },
+                    "&:hover": { backgroundColor: "#eee", color: "#000" },
                   }}
                 >
                   <ListItemText primary={item} />
