@@ -14,42 +14,37 @@ export default function BusinessVideos() {
       id="BusinessVideos"
       sx={{
         display: "flex",
-        flexDirection: { xs: "column", md: "row" },
-        alignItems: "center",
-        justifyContent: "center",
+        flexDirection: { xs: "row", md: "row" },
+        alignItems: "left",
+        justifyContent: "left",
         alignContent:"center",
-        background: "#ffffff",
         color: "#111",
-        minHeight: "auto",
-        overflow: "hidden",
+        Height: "auto",
         gap: 4,
       }}
     >
       <Box
         sx={{
           width: "100%",
-          overflow: "hidden",
           position: "relative",
         }}
       >
         <motion.div
-          animate={{ x: ["-100%", "0%"] }}
+          animate={{ y: ["-10%", "0%"] }}
           transition={{
             repeat: Infinity,
             duration: 30,
             ease: "linear",
+            loop: Infinity,
           }}
-          style={{
-            display: "flex",
-            gap: "24px",
-          }}
+          style={{ display: "flex", flexDirection: "row", gap: "24px", alignContent:"start" }}
         >
           {[...videos, ...videos].map((video, index) => (
             <Box
               key={index}
               sx={{
-                width: "100px",
-                height: "160px",
+                width: "180px",
+                height: "100px",
                 borderRadius: "12px",
                 overflow: "hidden",
                 boxShadow: "0 5px 20px rgba(0, 255, 255, 0.2)",
@@ -69,6 +64,7 @@ export default function BusinessVideos() {
                   width: "100%",
                   height: "100%",
                   objectFit: "cover",
+                 
                 }}
               >
                 <source src={video} type="video/mp4" />

@@ -15,11 +15,12 @@ import {
   Typography,
   Button,
 } from "@mui/material";
+import Image from "next/image";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useTheme } from "@mui/material/styles";
 
 const drawerWidth = 220;
-const navItems = ["home", "contact", "team"];
+const navItems = ["Services", "Survey"];
 
 export default function Header() {
   const theme = useTheme();
@@ -39,33 +40,6 @@ export default function Header() {
   return (
     <Box sx={{ display: "flex", flexDirection: "column" }}>
       <CssBaseline />
-      <Box
-        sx={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          width: "100%",
-          height: "100%",
-          overflow: "hidden",
-          zIndex: -1,
-        }}
-      >
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          style={{
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            filter: "brightness(0.4)",
-          }}
-        >
-          <source src="/ada.mp4" type="video/mp4" />
-        </video>
-      </Box>
-
       <AppBar
         component="nav"
         sx={{
@@ -82,11 +56,12 @@ export default function Header() {
         <Toolbar
           sx={{
             display: "flex",
-            justifyContent: "space-between",
+            justifyContent: "start",
             alignItems: "center",
             width: "100%",
           }}
         >
+          <Image src="/adatechlogo.png" alt="Ada Tech" width={100} height={100} />
           <Typography
             variant="h5"
             component="div"
@@ -106,7 +81,8 @@ export default function Header() {
           <Box
             sx={{
               display: { xs: "none", sm: "flex" },
-              gap: 1,
+              gap:3,
+              ml:"3rem"
             }}
           >
             {navItems.map((item) => (
@@ -119,7 +95,7 @@ export default function Header() {
                   py: 0.8,
                   fontWeight: 500,
                   textTransform: "none",
-                  fontSize: "0.95rem",
+                  fontSize: "1rem",
                   transition: "all 0.2s ease-in-out",
                   "&:hover": {
                     backgroundColor: "#000",
