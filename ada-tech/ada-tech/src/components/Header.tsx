@@ -13,14 +13,13 @@ import {
   ListItemText,
   Toolbar,
   Typography,
-  Button,
 } from "@mui/material";
 import Image from "next/image";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useTheme } from "@mui/material/styles";
 
 const drawerWidth = 220;
-const navItems = ["Services", "Survey"];
+const navItems = ["Home", "Services","Contact", "Careers", "Projects"];
 
 export default function Header() {
   const theme = useTheme();
@@ -42,31 +41,36 @@ export default function Header() {
       <CssBaseline />
       <AppBar
         component="nav"
+        color="inherit"
         sx={{
-          position: "fixed",
+          position: "absolute",
           top: 1,
           width: "100%",
           zIndex: 1100,
-          background: "rgba(255, 255, 255, 0.6)",
-          borderBottom: "1px solid rgba(0, 0, 0, 0.05)",
           boxShadow: "none",
-          height: "100px",
+          height: "90px",
         }}
       >
         <Toolbar
           sx={{
             display: "flex",
-            justifyContent: "start",
+            justifyContent: "flex-start",
             alignItems: "center",
             width: "100%",
           }}
         >
-          <Image src="/adatechlogo.png" alt="Ada Tech" width={100} height={100} />
+          <Image
+            src="/adatechlogo.png"
+            alt="Ada Tech"
+            width={100}
+            height={100}
+          />
           <Typography
             variant="h5"
             component="div"
             sx={{
-              fontWeight: 600,
+              pl:1,
+              fontWeight: 900,
               letterSpacing: "0.5px",
               color: "#111",
               cursor: "pointer",
@@ -78,43 +82,12 @@ export default function Header() {
             ADA Tech
           </Typography>
 
-          <Box
-            sx={{
-              display: { xs: "none", sm: "flex" },
-              gap:3,
-              ml:"3rem"
-            }}
-          >
-            {navItems.map((item) => (
-              <Button
-                key={item}
-                sx={{
-                  color: "#111",
-                  borderRadius: "50px",
-                  px: 3,
-                  py: 0.8,
-                  fontWeight: 500,
-                  textTransform: "none",
-                  fontSize: "1rem",
-                  transition: "all 0.2s ease-in-out",
-                  "&:hover": {
-                    backgroundColor: "#000",
-                    color: "#fff",
-                  },
-                }}
-                onClick={() => handleNavClick(item)}
-              >
-                {item}
-              </Button>
-            ))}
-          </Box>
-
           <IconButton
             color="inherit"
             aria-label="open drawer"
             edge="end"
             onClick={handleDrawerToggle}
-            sx={{ display: { sm: "none" } }}
+            sx={{ display: "block",ml:"auto"}} // always visible
           >
             <MenuIcon />
           </IconButton>
@@ -126,33 +99,25 @@ export default function Header() {
         open={mobileOpen}
         onClose={handleDrawerToggle}
         sx={{
-          display: { xs: "block", sm: "none" },
+          display: "block", 
           "& .MuiDrawer-paper": {
-            width: drawerWidth,
+            width: "100%",
+            mt:"95px",
             background: "rgba(255, 255, 255, 0.95)",
             backdropFilter: "blur(10px)",
             color: "#111",
           },
         }}
       >
-        <Box sx={{ textAlign: "center", mt: 3 }}>
-          <Typography
-            variant="h6"
-            fontWeight="bold"
-            sx={{ mb: 2, cursor: "pointer" }}
-            onClick={() => {
-              handleNavClick("Home");
-              setMobileOpen(false);
-            }}
-          >
-            ADA Tech
-          </Typography>
+        <Box sx={{ textAlign: "left", mt: 9 }}>
+  
           <List>
             {navItems.map((item) => (
               <ListItem key={item} disablePadding>
                 <ListItemButton
-                  onClick={() => {
-                    handleNavClick(item);
+                onClick={() => {
+                    const path = item.toLowerCase().replace(/\s+/g, '-');
+                    window.location.href = path === "home" ? "/" : `/${path}`;
                     setMobileOpen(false);
                   }}
                   sx={{

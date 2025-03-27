@@ -1,7 +1,6 @@
 "use client";
 
 import { Box, Typography, Container } from "@mui/material";
-import BusinessVideos from "@/components/BusinessVideos";
 import { motion } from "framer-motion";
 
 const tips = [
@@ -33,15 +32,10 @@ const tips = [
 
 export default function SmallBusinessTips() {
   return (
-    <Container maxWidth="lg" sx={{ py: 6 }}>
-      <Typography variant="h4" fontWeight="bold" textAlign="center" gutterBottom>
-        Small Business Growth Tips
-      </Typography>
-      <Typography variant="body1" textAlign="center" sx={{ mb: 4 }}>
-        Learn how to improve your digital strategy and attract more clients.
-      </Typography>
+    <Container maxWidth="lg" sx={{ py: 1, background: "#ffffff",}}>
       <Box
         sx={{
+          background: "#ffffff",
           flex: 1,
           p: { xs: 0, md: 3 },
           display: "flex",

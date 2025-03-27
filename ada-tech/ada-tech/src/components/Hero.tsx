@@ -2,13 +2,11 @@
 
 import { Box, Typography, Button } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import BookingModal from "./BookingModal";
 import { useState } from "react";
 
 export default function Hero() {
   const theme = useTheme();
-  const [openModal, setOpenModal] = useState(false);
-
+ 
   const handleNavClick = (id: string) => {
     const section = document.getElementById(id.toLowerCase());
     if (section) {
@@ -20,6 +18,7 @@ export default function Hero() {
     <Box
       id="home"
       sx={{
+        background: "#ffffff",
         position: "relative",
         width: "100%",
         minHeight: "40vh",
@@ -27,7 +26,7 @@ export default function Hero() {
         alignItems: "center",
         justifyContent: "center",
         px: 1,
-        py: 4, // add this line to limit vertical padding
+        py: 4, 
       }}
     >
       <Box
@@ -41,7 +40,7 @@ export default function Hero() {
           overflow: "hidden",
         }}
       >
-        <video
+        {/* <video
           autoPlay
           loop
           muted
@@ -54,7 +53,7 @@ export default function Hero() {
           }}
         >
           <source src="/ada.mp4" type="video/mp4" />
-        </video>
+        </video> */}
       </Box>
 
       <Box
@@ -62,33 +61,38 @@ export default function Hero() {
           flex: 1,
           display: "flex",
           justifyContent: "center",
-          alignItems: "center",
-          textAlign: "center",
+          alignItems: "start",
+          textAlign: "start",
+          height:"content",
           flexDirection: "column",
-          gap: 1.5, // reduced vertical gap
+          pl:"4rem",
+          gap: 2,
           px: { xs: 2, md: 1 },
           zIndex: 1,
         }}
       >
-        <Typography variant="h6" sx={{ color: "#FFF", maxWidth: "800px" }}>
-          Elevate your brand with smart, scalable, AI-powered digital solutions.
-        </Typography>
+       <Typography variant="body1" sx={{ color: "#e0primarye0e0", maxWidth: "25rem", mt: 1, fontSize: "2rem", fontWeight:"700" }}>
+       Launch fast. Scale smarter. Succeed with clarity
+       </Typography>
+       <Typography variant="h6" sx={{ color: "primary", maxWidth: "1000px", fontSize: "2rem", fontWeight:"300" }}>
+        Our Team turn ideas into intelligent digital solutions!
+       </Typography>
         <Button
           variant="contained"
           size="large"
           aria-label="Book a Free Consultation Session"
-          onClick={() => setOpenModal(true)}
+          onClick={() => handleNavClick("Contact")}
           sx={{
-            backgroundColor: "#fff",
+            backgroundColor: "#4F46E5",
             color: "#111",
             "&:hover": {
               backgroundColor: "#f0f0f0",
             },
           }}
         >
-          Book One Free Consultation
+         Contact Us
         </Button>
-        <BookingModal open={openModal} onClose={() => setOpenModal(false)} />
+      
       </Box>
     </Box>
   );

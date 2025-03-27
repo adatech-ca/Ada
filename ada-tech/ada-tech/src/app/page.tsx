@@ -2,9 +2,9 @@
 import Hero from "@/components/Hero";
 import Header from "@/components/Header";
 import { Box, Typography } from "@mui/material";
-import SmallBusinessTips from "./SmallBusinessTips";
-import BusinessVideos from "@/components/BusinessVideos";
-import { start } from "repl";
+import SmallBusinessTips from "../components/SmallBusinessTips";
+
+
 
 export default function Home() {
   return (
@@ -14,6 +14,7 @@ export default function Home() {
         flexDirection:"column",
         scrollSnapType: "y mandatory",
         overflowY: "scroll",
+        backgroundColor:"#f9f9f9"
       }}
     >
       <Header />
@@ -21,7 +22,6 @@ export default function Home() {
         <Hero />
       </div>
       <SmallBusinessTips />
-      <BusinessVideos />
       <Box
         component="footer"
         sx={{

@@ -1,7 +1,7 @@
 "use client";
 import { Box } from "@mui/material";
 import { motion } from "framer-motion";
-import BookingModal from "./BookingModal";
+import BookingModal from "./Contact";
 import { useState } from "react";
 
 const videos = ["/1.mp4", "/2.mp4", "/3.mp4", "/4.mp4", "/5.mp4", "/7.mp4"];
