@@ -35,12 +35,12 @@ export default function SmallBusinessTips() {
     <Container maxWidth="lg" sx={{ py: 1, background: "#ffffff",}}>
       <Box
         sx={{
+          height:"100%",
           background: "#ffffff",
           flex: 1,
-          p: { xs: 0, md: 3 },
+          p: { xs: 0, md: 1 },
           display: "flex",
           flexDirection: "column",
-          gap: 3,
         }}
       >
         {tips.map((tip, index) => (
@@ -53,10 +53,10 @@ export default function SmallBusinessTips() {
           >
             <Box
               sx={{
-                backgroundColor: index % 2 === 0 ? "#f4f6f8" : "#e9ecef",
+                backgroundColor: index % 2 === 0 ? "rgba(164, 249, 200, 0.15)" : "rgba(248, 255, 174, 0.15)",
                 borderRadius: 3,
                 p: 3,
-                m: 3,
+                m: 1,
                 boxShadow: "0 4px 20px rgba(0,0,0,0.06)",
                 transition: "transform 0.3s ease",
                 "&:hover": {

@@ -17,6 +17,7 @@ import {
 import Image from "next/image";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useTheme } from "@mui/material/styles";
+import SurveyButton from "./SurveyButton";
 
 const drawerWidth = 220;
 const navItems = ["Home", "Services","Contact", "Careers", "Projects"];
@@ -81,7 +82,7 @@ export default function Header() {
           >
             ADA Tech
           </Typography>
-
+          <SurveyButton />
           <IconButton
             color="inherit"
             aria-label="open drawer"
