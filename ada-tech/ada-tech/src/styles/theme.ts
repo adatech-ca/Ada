@@ -60,7 +60,7 @@ const theme = createTheme({
           color: "#1C1C1E",
           borderRadius: "12px",
           padding: "20px",
-          boxShadow: "0px 6px 18px rgba(0, 0, 0, 0.05)",
+    
         },
       },
     },
