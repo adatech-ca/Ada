@@ -62,7 +62,7 @@ export default function FullStackDeveloperPage() {
           variant="contained"
           color="primary"
           size="large"
-          href="mailto:iman.hedeshy@gmail.com,sahar.abdollahi@torontomu.ca"
+          href="mailto:iman.hedeshy@gmail.com"
           sx={{ textTransform: "none" }}
         >
           Apply Now
