@@ -32,7 +32,7 @@ export default function Hero() {
             width: "100%",
             height: "100%",
             objectFit: "cover",
-            filter: "brightness(0.5)",
+            filter: "brightness(0.8)",
           }}
         >
           <source src="/ada.mp4" type="video/mp4" />
@@ -45,7 +45,7 @@ export default function Hero() {
           height: "100%",
           display: "flex",
           alignItems: "center",
-          px: { xs: 2, md: 1 },
+        
         }}
       >
         <Box
@@ -71,7 +71,7 @@ export default function Hero() {
               mt: 1,
               fontSize: "2rem",
               fontWeight: "700",
-              background: "linear-gradient(90deg, #a4f9c8, #f8ffae, #c1ffd7)",
+              background: "linear-gradient(130deg, #a4f9c8, #f8ffae, #c1ffd7)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               textAlign: "center",
@@ -96,7 +96,7 @@ export default function Hero() {
             aria-label="Book a Free Consultation Session"
             onClick={() => handleNavClick("Contact")}
             sx={{
-              backgroundColor: "#4F46E5",
+              backgroundColor: "#9aa092",
               color: "#111",
               "&:hover": {
                 backgroundColor: "#f0f0f0",

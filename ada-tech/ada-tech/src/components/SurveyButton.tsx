@@ -11,11 +11,11 @@ export default function SurveyButton() {
       variant="contained"
       onClick={() => router.push("/survey")}
       sx={{
-        backgroundColor: "#ec4899", // modern pink
-        color: "#fff",
+        backgroundColor: "#6366F1", 
+        color: "#ffffff",
         ml: 2,
         "&:hover": {
-          backgroundColor: "#db2777",
+          backgroundColor: "#4F46E5",
         },
         textTransform: "none",
         fontWeight: 600,
@@ -23,11 +23,11 @@ export default function SurveyButton() {
         borderRadius: "20px",
         px: 3,
         py: 1,
-        boxShadow: "0 4px 12px rgba(236, 72, 153, 0.4)",
+        boxShadow: "0 4px 12px rgba(99, 102, 241, 0.3)",
         transition: "all 0.3s ease",
       }}
     >
-      Take Survey
+     Survey
     </Button>
   );
 }

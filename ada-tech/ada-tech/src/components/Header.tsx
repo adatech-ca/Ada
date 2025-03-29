@@ -17,7 +17,7 @@ import {
 import Image from "next/image";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useTheme } from "@mui/material/styles";
-import SurveyButton from "./SurveyButton";
+
 
 const drawerWidth = 220;
 const navItems = ["Home", "Services","Contact", "Careers", "Projects"];
@@ -42,7 +42,6 @@ export default function Header() {
       <CssBaseline />
       <AppBar
         component="nav"
-        color="inherit"
         sx={{
           position: "absolute",
           top: 1,
@@ -50,6 +49,8 @@ export default function Header() {
           zIndex: 1100,
           boxShadow: "none",
           height: "90px",
+          backgroundColor: "transparent",
+          backdropFilter: "blur(15px)"
         }}
       >
         <Toolbar
@@ -65,6 +66,7 @@ export default function Header() {
             alt="Ada Tech"
             width={100}
             height={100}
+      
           />
           <Typography
             variant="h5"
@@ -82,16 +84,27 @@ export default function Header() {
           >
             ADA Tech
           </Typography>
-          <SurveyButton />
           <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="end"
-            onClick={handleDrawerToggle}
-            sx={{ display: "block",ml:"auto"}} // always visible
-          >
-            <MenuIcon />
-          </IconButton>
+  color="inherit"
+  aria-label="open drawer"
+  edge="end"
+  onClick={handleDrawerToggle}
+  sx={{
+    display: "block",
+    ml: "auto",
+    backdropFilter: "blur(6px)",
+    backgroundColor: "rgba(255, 255, 255, 0.2)",
+    border: "1px solid rgba(255, 255, 255, 0.3)",
+    borderRadius: "12px",
+    transition: "all 0.3s ease-in-out",
+    "&:hover": {
+      backgroundColor: "rgba(255, 255, 255, 0.35)",
+      transform: "scale(1.05)",
+    },
+  }}
+>
+  <MenuIcon sx={{ color: "#111", fontSize: "1.8rem" }} />
+</IconButton>
         </Toolbar>
       </AppBar>
 
@@ -103,10 +116,12 @@ export default function Header() {
           display: "block", 
           "& .MuiDrawer-paper": {
             width: "100%",
-            mt:"95px",
+            mt: "95px",
             background: "rgba(255, 255, 255, 0.95)",
             backdropFilter: "blur(10px)",
             color: "#111",
+            boxShadow: "0 -1px 5px rgba(0, 0, 0, 0.1)",
+            borderTop: "1px solid rgba(0, 0, 0, 0.1)",
           },
         }}
       >
